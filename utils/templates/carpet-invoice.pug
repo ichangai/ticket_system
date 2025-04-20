@@ -1,0 +1,232 @@
+doctype html
+html
+  head
+    style.
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      
+      body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        color: #2D3748;
+        background-color: #F7FAFC;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #1a365d 0%, #2D3748 100%);
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        position: relative;
+      }
+
+      .header::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(90deg, #FF0157 0%, #FF4B81 100%);
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .content {
+        padding: 40px;
+      }
+
+      .thank-you {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: #2D3748;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .order-number {
+        background-color: #F7FAFC;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+        border: 2px dashed #FF0157;
+        position: relative;
+      }
+
+      .order-number::before {
+        content: '📋';
+        font-size: 24px;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .order-number strong {
+        color: #FF0157;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .details {
+        background-color: #F7FAFC;
+        padding: 25px;
+        border-radius: 15px;
+        margin-top: 30px;
+      }
+
+      .details-group {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #E2E8F0;
+      }
+
+      .details-group:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .details-label {
+        font-weight: 600;
+        color: #4A5568;
+        margin-bottom: 8px;
+      }
+
+      .details-value {
+        color: #2D3748;
+        font-size: 16px;
+      }
+
+      .total {
+        background: linear-gradient(135deg, #FF0157 0%, #FF4B81 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 30px;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 30px;
+        background-color: #F7FAFC;
+        border-top: 1px solid #E2E8F0;
+      }
+
+      .footer-brand {
+        font-weight: 700;
+        color: #2D3748;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .footer-contact {
+        color: #4A5568;
+        font-size: 14px;
+      }
+
+      .emoji-icon {
+        font-size: 20px;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          margin: 20px;
+          width: auto;
+        }
+        
+        .content {
+          padding: 20px;
+        }
+        
+        .thank-you {
+          font-size: 20px;
+        }
+      }
+
+  body
+    .container
+      .header
+        h1 Carpet Order Confirmation
+      
+      .content
+        p.thank-you Thank you for choosing our Carpet Cleaning Services! ✨
+        
+        .order-number
+          strong Order Number: 
+          span= order.order_no
+        
+        .details
+          .details-group
+            .details-label
+              span.emoji-icon 💳
+              | Payment Mode
+            .details-value= order.payment_mode
+          
+          if order.pickup_option
+            .details-group
+              .details-label
+                span.emoji-icon 🚚
+                | Pickup Option
+              .details-value= order.pickup_option
+          
+          if order.delivery_option
+            .details-group
+              .details-label
+                span.emoji-icon 📦
+                | Delivery Option
+              .details-value= order.delivery_option
+          
+          if order.delivery_fee
+            .details-group
+              .details-label
+                span.emoji-icon 🏷️
+                | Delivery Fee
+              .details-value Kshs #{order.delivery_fee.toFixed(2)}
+          
+          if order.delivery_address
+            .details-group
+              .details-label
+                span.emoji-icon 📍
+                | Delivery Address
+              .details-value
+                div= order.delivery_address.location
+                div= order.delivery_address.building
+                if order.delivery_address.room_no
+                  div Room: #{order.delivery_address.room_no}
+          
+          if order.description
+            .details-group
+              .details-label
+                span.emoji-icon 📝
+                | Additional Notes
+              .details-value= order.description
+
+        .total
+          | Total Amount: Kshs #{order.total_fee.toFixed(2)}
+
+      .footer
+        .footer-brand Dropby Errands
+        .footer-contact
+          p If you have any questions about your carpet cleaning order, please don't hesitate to contact us.
+          p support@dropbyerrands.com | +254 700 000 000

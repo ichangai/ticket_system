@@ -1,0 +1,274 @@
+doctype html
+html
+  head
+    style.
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      
+      body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        color: #2D3748;
+        background-color: #F7FAFC;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #1a365d 0%, #2D3748 100%);
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        position: relative;
+      }
+
+      .header::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(90deg, #FF0157 0%, #FF4B81 100%);
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .content {
+        padding: 40px;
+      }
+
+      .thank-you {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: #2D3748;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .order-number {
+        background-color: #F7FAFC;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+        border: 2px dashed #FF0157;
+        position: relative;
+      }
+
+      .order-number strong {
+        color: #FF0157;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .carpet-banner {
+        width: 100%;
+        height: 200px;
+        background-image: url('/api/placeholder/600/200');
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carpet-banner::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
+      }
+
+      .products-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #2D3748;
+        text-align: center;
+        margin: 30px 0;
+        position: relative;
+      }
+
+      .products-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: #FF0157;
+        margin: 10px auto 0;
+        border-radius: 2px;
+      }
+
+      .product {
+        background: #F7FAFC;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #E2E8F0;
+      }
+
+      .product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      }
+
+      .product-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2D3748;
+        margin: 0 0 15px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .product-name::before {
+        content: '🧶';
+        margin-right: 10px;
+        font-size: 20px;
+      }
+
+      .product-info {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+      }
+
+      .product-info p {
+        margin: 8px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .product-info strong {
+        color: #4A5568;
+      }
+
+      .product-info span {
+        color: #2D3748;
+        font-weight: 500;
+      }
+
+      .subtotal {
+        background: linear-gradient(135deg, #FF0157 0%, #FF4B81 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .subtotal-label {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .subtotal-amount {
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 30px;
+        background-color: #F7FAFC;
+        border-top: 1px solid #E2E8F0;
+      }
+
+      .footer p {
+        margin: 8px 0;
+        color: #4A5568;
+      }
+
+      .footer strong {
+        color: #2D3748;
+        font-size: 18px;
+        display: block;
+        margin: 15px 0;
+      }
+
+      .footer span.highlight {
+        color: #FF0157;
+        font-weight: 500;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          margin: 20px;
+          width: auto;
+        }
+        
+        .content {
+          padding: 20px;
+        }
+        
+        .carpet-banner {
+          height: 150px;
+        }
+        
+        .product-info {
+          flex-direction: column;
+        }
+      }
+
+  body
+    .container
+      .header
+        h1 Carpet Order Confirmation
+      
+      .content
+        p.thank-you Thank you for choosing our Carpet Cleaning Services! ✨
+        
+        .order-number
+          strong Order Number: 
+          span= order.order_no
+        
+        .carpet-banner
+        // Static carpet banner image will be displayed here
+        
+        h2.products-title Your Carpet Details
+        
+        each carpet, index in order.carpets
+          .product
+            p.product-name Carpet #{index + 1}
+            .product-info
+              p
+                strong Dimensions
+                span #{carpet.length} x #{carpet.width} #{carpet.unit || 'meters'}
+              p
+                strong Amount
+                span Kshs #{carpet.amount.toFixed(2)}
+        
+        .subtotal
+          span.subtotal-label Subtotal
+          span.subtotal-amount Kshs #{order.sub_total.toFixed(2)}
+      
+      .footer
+        p If you have any questions about your carpet cleaning order, please don't hesitate to contact us.
+        p
+          strong Dropby Errands
+        p
+          span.highlight support@dropbyerrands.com
+          span  | 
+          span +254 700 000 000
