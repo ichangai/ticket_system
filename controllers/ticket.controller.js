@@ -83,6 +83,48 @@ export const getAllTickets = async (req, res) => {
   }
 };
 
+// Backend function to fetch a single ticket by ID
+// This would go in your ticket.controller.js file
+
+export const fetchSingleTicket = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Validate ObjectId format
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid ticket ID format"
+      });
+    }
+
+    const ticket = await Ticket.findById(id)
+      .populate("customer", "first_name last_name email") // Populate customer details
+      .exec();
+    
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: "Ticket not found"
+      });
+    }
+    
+    return res.status(200).json({
+      success: true,
+      data: ticket,
+      message: "Ticket retrieved successfully"
+    });
+    
+  } catch (error) {
+    console.error("Error fetching ticket:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to retrieve ticket",
+      error: error.message
+    });
+  }
+};
+
 // Get tickets by customer ID
 export const getTicketsByCustomer = async (req, res) => {
   try {

@@ -14,6 +14,6 @@ const router = express.Router();
 router.post("/ticket", createTicket);
 router.get("/tickets", getAllTickets);
 router.get("/customer/:customer_id", getTicketsByCustomer);
-router.get("/:id", getTicketById);
+router.get("/ticket/:id", fetchSingleTicket);
 
 export default router;
