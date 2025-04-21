@@ -2,14 +2,6 @@ import Customer from "../models/customer.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-import sendCode from "../utils/sms.js";
-import passport from "passport";
-import {
-  sendVerificationEmail,
-  sendResetPasswordEmail,
-  sendResetEmailCode,
-  sendResetPhoneCode,
-} from "../utils/invoice.service.js";
 
 // create an Customer
 export const register = async (req, res) => {

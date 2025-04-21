@@ -90,13 +90,7 @@ export const fetchSingleTicket = async (req, res) => {
   try {
     const { id } = req.params;
     
-    // Validate ObjectId format
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid ticket ID format"
-      });
-    }
+
 
     const ticket = await Ticket.findById(id)
       .populate("customer", "first_name last_name email") // Populate customer details

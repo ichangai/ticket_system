@@ -3,9 +3,7 @@ import {
   createTicket,
   getAllTickets,
   getTicketsByCustomer,
-  getTicketById,
-  updateTicketStatus,
-  deleteTicket,
+  fetchSingleTicket
 } from "../controllers/ticket.controller.js";
 
 const router = express.Router();
